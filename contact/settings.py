@@ -44,7 +44,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'contact.urls'
-
+WSGI_APPLICATION = 'contact.wsgi.application'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
