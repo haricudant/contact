@@ -15,7 +15,7 @@ SECRET_KEY = 'fxphvi0bj)%n1fisxz%j2=i39v9x%5@2xeh^(=s3+3-2yc3la('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1:8000']
 
 
 # Application definition
@@ -44,7 +44,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'contact.urls'
-WSGI_APPLICATION = 'contact.wsgi.application'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -121,7 +121,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 django_heroku.settings(locals())
-ALLOWED_HOSTS = ['harimass.herokuapp.com']
+# ALLOWED_HOSTS = ['harimass.herokuapp.com']
 
 # db_from_env = dj_database_url.config(conn_max_age=500)
 
