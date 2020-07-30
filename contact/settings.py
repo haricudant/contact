@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 
+import dj_database_url
 import os
 import django_heroku
 
@@ -43,10 +44,12 @@ INSTALLED_APPS = [
     'rest_framework'
 ]
 
+**whitenoise middleware **
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -72,11 +75,12 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'contact.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
+prod_db = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
 
 DATABASES = {
     'default': {
@@ -119,10 +123,10 @@ USE_L10N = True
 USE_TZ = True
 
 
-prod_db = dj_database_url.config(conn_max_age=500)
+# prod_db = dj_database_url.config(conn_max_age=500)
 
-DATABASES['default'].update(prod_db)
-# Static files (CSS, JavaScript, Images)
+# DATABASES['default'].update(prod_db)
+# # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
@@ -133,8 +137,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 django_heroku.settings(locals())
-ALLOWED_HOSTS = ['https://hericudantapi.herokuapp.com/']
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+ALLOWED_HOSTS = ['harimass.herokuapp.com']
+
+# db_from_env = dj_database_url.config(conn_max_age=500)
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
