@@ -1,7 +1,5 @@
-import dj_database_url
-import os
-import django_heroku
 
+import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -15,7 +13,7 @@ SECRET_KEY = 'fxphvi0bj)%n1fisxz%j2=i39v9x%5@2xeh^(=s3+3-2yc3la('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1:8000']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -29,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'contactapp',
     'rest_framework'
+
 ]
 
 
@@ -120,12 +119,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 # ALLOWED_HOSTS = ['harimass.herokuapp.com']
 
 # db_from_env = dj_database_url.config(conn_max_age=500)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-prod_db = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
+# prod_db = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update()
